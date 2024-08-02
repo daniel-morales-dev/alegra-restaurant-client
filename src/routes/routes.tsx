@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Orders from "../Components/Orders";
 import App from "../App.tsx";
 import Kitchen from "../Components/kitchen";
+import WareHouse from "../Components/wareHouse";
 
 export const routes = createBrowserRouter([
   {
@@ -10,7 +11,7 @@ export const routes = createBrowserRouter([
     children: [
       { path: "", element: <Orders /> },
       { path: "kitchen", element: <Kitchen /> },
-      { path: "warehouse", element: <Orders /> },
+      { path: "warehouse", element: <WareHouse /> },
     ],
   },
 ]);

@@ -1,0 +1,17 @@
+.container-warehouse {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    width: 100%;
+    align-items: center;
+
+    h2 {
+      font-size: 3rem;
+    }
+  }
+}
