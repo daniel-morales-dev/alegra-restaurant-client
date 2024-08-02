@@ -5,13 +5,13 @@
   .container-orders__orders{
     display: flex;
     justify-content: space-between;
+    width: 90%;
+    max-width: 100%;
     div{
       .title{
         color: #299e9c;
         font-size: 2rem;
       }
-      width: 90%;
-      max-width: 100%;
       .container-cards{
         overflow-y: auto;
         max-height: 50em;
