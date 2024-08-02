@@ -1,0 +1,43 @@
+.container-orders{
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  .container-orders__orders{
+    display: flex;
+    justify-content: space-between;
+    div{
+      .title{
+        color: #299e9c;
+        font-size: 2rem;
+      }
+      width: 90%;
+      max-width: 100%;
+      .container-cards{
+        overflow-y: auto;
+        max-height: 50em;
+        .card-order{
+          cursor: pointer;
+          text-align: left;
+          padding: 1em;
+          border-radius: 12px;
+          margin-bottom: 1em;
+          background-color: white;
+          max-width: 30em;
+          height: 15em;
+
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+          .title{
+            margin-bottom: 1em;
+            font-size: 20px;
+            padding-bottom: .5em;
+            border-bottom: 1px solid #299e9c;
+          }
+          .recipe{
+            margin-top: 1em;
+          }
+        }
+      }
+
+    }
+  }
+}
