@@ -10,7 +10,7 @@ const initialState: OrdersStateType = {
 };
 
 export const ordersSlice = createSlice({
-  name: "ordersApi",
+  name: "orders",
   initialState: initialState,
   reducers: {
     addOrder: (state, action: PayloadAction<IOrder>) => {

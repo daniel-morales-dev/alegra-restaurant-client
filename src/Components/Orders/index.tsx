@@ -4,18 +4,26 @@ import { IOrder } from "../../interfaces/orders.interface.ts";
 import { useGetStatusQuery } from "../../store/apis/orders.api.ts";
 import OrderCard from "./children/orderCard.tsx";
 import { AppDispatch, RootState } from "../../store/store.ts";
-import { SET_ORDER_LIST } from "../../store/actions/orders.actions.ts";
+import {
+  POST_ORDER,
+  SET_ORDER_LIST,
+} from "../../store/actions/orders.actions.ts";
 import { getOrdersSelector } from "../../store/selectors/orders.selector.ts";
 
 interface OrdersProps {
   orders: IOrder[];
   updateOrders: (params: IOrder[]) => void;
+  createOrder: () => void;
 }
 
-const Orders: React.FC<OrdersProps> = ({ orders, updateOrders }) => {
+const Orders: React.FC<OrdersProps> = ({
+  orders,
+  updateOrders,
+  createOrder,
+}) => {
   const uuids = orders.map((order) => order.uuid);
   const { data } = useGetStatusQuery(uuids, {
-    pollingInterval: 3000,
+    pollingInterval: 5000,
     skip: !uuids.length,
   });
 
@@ -27,7 +35,10 @@ const Orders: React.FC<OrdersProps> = ({ orders, updateOrders }) => {
 
   return (
     <div className="container-orders">
-      <h2>Ordenes</h2>
+      <header>
+        <h2>Ordenes</h2>
+        <button onClick={() => createOrder()}>Pedir almuerzo</button>
+      </header>
       <div className="container-orders__orders">
         <div className="container-order__pending">
           <h2 className={"title"}>Ordenes pendientes</h2>
@@ -84,6 +95,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   updateOrders: (params: IOrder[]) => dispatch(SET_ORDER_LIST(params)),
+  createOrder: () => dispatch(POST_ORDER()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

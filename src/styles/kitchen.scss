@@ -1,0 +1,66 @@
+.container-kitchen {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    width: 100%;
+    align-items: center;
+
+    h2 {
+      font-size: 3rem;
+    }
+  }
+  &__orders{
+    text-align: left;
+    padding: 1em;
+    width: 100%;
+    display: flex;
+    .kitchen{
+      width: 20%;
+      h2{
+        margin-bottom: 1em;
+      }
+      .container-cards{
+        height: 60em;
+        overflow-y: scroll;
+        padding: 1em;
+        .card{
+          border-radius: 12px;
+          background-color: #fff;
+          width: 100%;
+          height: 15em;
+          padding: 1em;
+          margin-bottom: 1em;
+          .uuid{
+            margin-bottom: 1em;
+          }
+          .title-recipe{
+            margin-top: 1em;
+          }
+        }
+      }
+    }
+    .container-kitchen__recipes{
+      margin-left: 2em;
+      width: 30%;
+      .container-cards{
+        margin-top: 2em;
+        height: 60em;
+        overflow-y: scroll;
+        padding: 1em;
+        .card{
+          border-radius: 12px;
+          background-color: #fff;
+          width: 100%;
+          height: 15em;
+          padding: 1em;
+          margin-bottom: 1em;
+        }
+      }
+    }
+  }
+}

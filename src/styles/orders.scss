@@ -2,6 +2,32 @@
   width: 100%;
   justify-content: center;
   text-align: center;
+  header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    width: 100%;
+    align-items: center;
+    h2{
+      font-size: 3rem;
+    }
+    button{
+      border-radius: 12px;
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      background-color: #30aba9;
+      font-weight: bold;
+      font-size: 16px;
+      color: white;
+      height: 42px;
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
+    button:hover{
+      background-color: #299e9c;
+    }
+  }
   .container-orders__orders{
     display: flex;
     justify-content: space-between;

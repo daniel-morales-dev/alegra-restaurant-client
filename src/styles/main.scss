@@ -1,1 +1,24 @@
 @import "./orders";
+@import "./asideMenu";
+@import "./kitchen";
+
+.container-restaurant {
+  display: grid;
+  grid-template-columns: 10% 90%; // El menú ocupa el 30% del ancho y el contenido principal el 70%
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100%;
+
+  .aside-menu {
+    grid-area: 1 / 1 / 2 / 2;
+    // Asegúrate de que el ancho esté en porcentaje para adaptarse a la configuración de columna
+    width: 100%;
+  }
+
+  .main-container {
+    grid-area: 1 / 2 / 2 / 3;
+    // Este área ocupará el 70% restante
+    width: 100%;
+  }
+}
