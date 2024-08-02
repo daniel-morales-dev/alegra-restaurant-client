@@ -5,16 +5,22 @@
   .container-orders__orders{
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     max-width: 100%;
-    div{
+    .container-order__pending, .container-order__kitchen,.container-order__finished{
+      width: 100%;
+      margin-top: 1em;
       .title{
         color: #299e9c;
         font-size: 2rem;
       }
       .container-cards{
         overflow-y: auto;
-        max-height: 50em;
+        height: 50em;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         .card-order{
           cursor: pointer;
           text-align: left;
@@ -22,7 +28,7 @@
           border-radius: 12px;
           margin-bottom: 1em;
           background-color: white;
-          max-width: 30em;
+          width: 20em;
           height: 15em;
 
           box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
