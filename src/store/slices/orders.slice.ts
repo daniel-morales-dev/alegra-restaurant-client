@@ -17,7 +17,15 @@ export const ordersSlice = createSlice({
       state.orders.push(action.payload);
     },
     updateOrders: (state, action: PayloadAction<IOrder[]>) => {
-      state.orders = action.payload;
+      const existingOrdersMap = new Map(
+        state.orders.map((order) => [order.uuid, order]),
+      );
+
+      action.payload.forEach((order) => {
+        existingOrdersMap.set(order.uuid, order);
+      });
+
+      state.orders = Array.from(existingOrdersMap.values());
     },
   },
 });

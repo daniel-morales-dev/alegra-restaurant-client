@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { IOrder } from "../../interfaces/orders.interface.ts";
 import { useGetStatusQuery } from "../../store/apis/orders.api.ts";
@@ -21,10 +21,17 @@ const Orders: React.FC<OrdersProps> = ({
   updateOrders,
   createOrder,
 }) => {
-  const uuids = orders.map((order) => order.uuid);
-  const { data } = useGetStatusQuery(uuids, {
+  const nonFinishedUuids = useMemo(
+    () =>
+      orders
+        .filter((order) => order.status !== "finished")
+        .map((order) => order.uuid),
+    [orders],
+  );
+
+  const { data } = useGetStatusQuery(nonFinishedUuids, {
     pollingInterval: 5000,
-    skip: !uuids.length,
+    skip: !nonFinishedUuids.length,
   });
 
   useEffect(() => {
