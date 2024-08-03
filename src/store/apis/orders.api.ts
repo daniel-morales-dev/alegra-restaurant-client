@@ -21,7 +21,10 @@ export const orderApi = createApi({
         return `/v1/orders/status?${queryString}`;
       },
     }),
+    getTodayOrders: builder.query<IOrder[], undefined>({
+      query: () => `/v1/orders/today`,
+    }),
   }),
 });
 
-export const { useGetStatusQuery } = orderApi;
+export const { useGetStatusQuery, useGetTodayOrdersQuery } = orderApi;

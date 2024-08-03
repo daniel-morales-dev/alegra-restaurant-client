@@ -20,12 +20,13 @@ const Recipes = () => {
   const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
 
   const { data: recipesData } = useGetRecipesQuery(undefined);
-  const { data: statusData, refetch } = useGetRecipesStatusQuery(
-    String(messageRecipe?.uuid),
-    {
-      skip: !messageRecipe?.uuid,
-    },
-  );
+  const {
+    data: statusData,
+    isLoading,
+    refetch,
+  } = useGetRecipesStatusQuery(String(messageRecipe?.uuid), {
+    skip: !messageRecipe?.uuid,
+  });
 
   useEffect(() => {
     if (recipesData) {
@@ -62,20 +63,24 @@ const Recipes = () => {
     <section className="container-recipes">
       <h2>Recetas disponibles</h2>
       <div className="container-cards">
-        {recipes.map((recipe) => (
-          <div className={"card"} key={recipe.id}>
-            <h3 className={"card-name"}>{recipe.name}</h3>
-            <section className="ingredients">
-              <h3>Ingredientes</h3>
-              {recipe.recipeIngredients.map((ingredient) => (
-                <>
-                  <p>Nombre: {ingredient.name}</p>
-                  <p>Cantidad: {ingredient.quantity}</p>
-                </>
-              ))}
-            </section>
-          </div>
-        ))}
+        {isLoading ? (
+          <h3>Cargando recetas</h3>
+        ) : (
+          recipes.map((recipe) => (
+            <div className={"card"} key={`${recipe.id}-${recipe.name}`}>
+              <h3 className={"card-name"}>{recipe.name}</h3>
+              <section className="ingredients">
+                <h3>Ingredientes</h3>
+                {recipe.recipeIngredients.map((ingredient) => (
+                  <>
+                    <p>Nombre: {ingredient.name}</p>
+                    <p>Cantidad: {ingredient.quantity}</p>
+                  </>
+                ))}
+              </section>
+            </div>
+          ))
+        )}
       </div>
     </section>
   );

@@ -1,7 +1,10 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { IOrder } from "../../interfaces/orders.interface.ts";
-import { useGetStatusQuery } from "../../store/apis/orders.api.ts";
+import {
+  useGetStatusQuery,
+  useGetTodayOrdersQuery,
+} from "../../store/apis/orders.api.ts";
 import OrderCard from "./children/orderCard.tsx";
 import { AppDispatch, RootState } from "../../store/store.ts";
 import {
@@ -21,6 +24,8 @@ const Orders: React.FC<OrdersProps> = ({
   updateOrders,
   createOrder,
 }) => {
+  const [initialOrdersLoaded, setInitialOrdersLoaded] = useState(false);
+
   const nonFinishedUuids = useMemo(
     () =>
       orders
@@ -33,6 +38,17 @@ const Orders: React.FC<OrdersProps> = ({
     pollingInterval: 5000,
     skip: !nonFinishedUuids.length,
   });
+
+  const { data: dataTodayOrders } = useGetTodayOrdersQuery(undefined, {
+    skip: initialOrdersLoaded,
+  });
+
+  useEffect(() => {
+    if (!initialOrdersLoaded && dataTodayOrders) {
+      updateOrders(dataTodayOrders);
+      setInitialOrdersLoaded(true);
+    }
+  }, [dataTodayOrders, initialOrdersLoaded, updateOrders]);
 
   useEffect(() => {
     if (data?.length) {
